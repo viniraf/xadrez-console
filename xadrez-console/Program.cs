@@ -8,6 +8,11 @@ namespace xadrez_console
 
             // Teste criação tabuleiro
             Tabuleiro tab = new Tabuleiro(8, 8);
+
+            // Teste imprimir o tabuleiro
+            Tela.imprimirTabuleiro(tab);
+
+            Console.ReadLine();
           
         }
     }

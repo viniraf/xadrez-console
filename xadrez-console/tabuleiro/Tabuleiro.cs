@@ -11,5 +11,10 @@
             pecas = new Peca[linhas, colunas];
 
         }
+        
+        // Metodo para acessar a peça em outra classe
+        public Peca peca(int linha, int coluna) {
+            return pecas[linha, coluna];
+        }
     }
 }
