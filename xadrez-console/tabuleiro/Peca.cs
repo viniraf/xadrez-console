@@ -8,8 +8,8 @@
         public Tabuleiro tab { get; protected set; }
 
         // Construtor
-        public Peca (Posicao posicao, Tabuleiro tab, Cor cor) {
-            this.posicao = posicao;
+        public Peca (Tabuleiro tab, Cor cor) {
+            this.posicao = null;
             this.tab = tab;
             this.qteMovimentos = 0;
         }
