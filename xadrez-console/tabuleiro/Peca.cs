@@ -10,6 +10,7 @@
         // Construtor
         public Peca (Tabuleiro tab, Cor cor) {
             this.posicao = null;
+            this.cor = cor;
             this.tab = tab;
             this.qteMovimentos = 0;
         }
