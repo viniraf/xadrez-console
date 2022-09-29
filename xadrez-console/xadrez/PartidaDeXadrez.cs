@@ -9,10 +9,10 @@ namespace xadrez {
         public Tabuleiro tab { get; private set; }
 
         // Turno da partida
-        private int turno;
+        public int turno { get; private set; }
 
         // Vez de quem deve jogar
-        private Cor jogadorAtual;
+        public Cor jogadorAtual { get; private set; }
 
         // Indicar se a partida esta terminada ou não
         public bool termidada { get; private set; }
@@ -33,6 +33,40 @@ namespace xadrez {
             p.incrementarQteMovimentos();
             Peca pecaCapturada = tab.retirarPeca(destino);
             tab.colocarPeca(p, destino);
+        }
+
+        // Metodo para controlar quem deve jogar 
+        public void realizaJogada(Posicao origem, Posicao destino) {
+            executarMovimento(origem, destino);
+            turno++;
+            mudaJogador();
+        }
+
+        public void validarPosicaodeOrigem (Posicao pos) {
+            if (tab.peca(pos) == null) {
+                throw new TabuleiroException("Não existe peça na posição de origem escolhida");
+            }
+            if (jogadorAtual != tab.peca(pos).cor) {
+                throw new TabuleiroException("A peça de origem escolhida não é sua!");
+            }
+            if (!tab.peca(pos).existeMovimentosPossiveis()) {
+                throw new TabuleiroException("Não há moviments possivéis para a peça de origem escolhida");
+            }
+        }
+
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino) {
+            if (!tab.peca(origem).podeMoverPara(destino)) {
+                throw new TabuleiroException("Posição de destino inválida");
+            }
+        }
+
+        private void mudaJogador() {
+            if (jogadorAtual == Cor.Branca) {
+                jogadorAtual = Cor.Preta;
+            }
+            else {
+                jogadorAtual = Cor.Branca;
+            }
         }
 
         // Metodo auxiliar para colocar peças no tabuleiro da partida
